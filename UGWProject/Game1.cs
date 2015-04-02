@@ -145,6 +145,7 @@ namespace UGWProject
 
 
             paulPhysical = Content.Load<Texture2D>("paulstand1.png");
+            paulGhost = Content.Load<Texture2D>("paulfloat.png");
             floor = Content.Load<Texture2D>(textures[0]);
             sides = Content.Load<Texture2D>(textures[1]);
             top = Content.Load<Texture2D>(textures[2]);
@@ -333,7 +334,12 @@ namespace UGWProject
             spriteBatch.Draw(sideL.GameTexture, sideL.ObjRect, Color.White);
             spriteBatch.Draw(sideR.GameTexture, sideR.ObjRect, Color.White);
             spriteBatch.Draw(ceiling.GameTexture, ceiling.ObjRect, Color.White);
-            spriteBatch.Draw(paulPlayer.GameTexture, paulPlayer.ObjRect, Color.White);
+            if(paulPlayer.IsDead == true)
+            {
+                spriteBatch.Draw(paulGhost, paulPlayer.ObjRect, Color.White);
+            }
+            else { spriteBatch.Draw(paulPlayer.GameTexture, paulPlayer.ObjRect, Color.White); }
+
 
             spriteBatch.End();
             base.Draw(gameTime);
